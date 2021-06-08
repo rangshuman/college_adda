@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Sign Up - M.G.R Community Forum
+    </title>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+    <link rel="stylesheet" href="sign_up_log_in_style.css"/>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row sign-up">
+            <div class="col col-5">
+                <div class="d-flex align-items-center justify-content-center mt-5">
+                    <img src="mini_project_logo_wob.svg" id="icon" alt="Mini Project Logo">
+                </div>
+                <form id="sign_up_form" method="POST">
+                    <div class="text-center">
+                        <h1>Sign Up</h1>
+                    </div>
+                    <div class="form-group">
+                        <label for="role_names_dd"> Role: </label>
+                        <select 
+                            class="form-control" 
+                            id="role_names_dd" 
+                            name="role_id"
+                            required
+                        >
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="first_name"> First Name: </label>
+                        <input
+                            class="form-control"
+                            type="text"
+                            name="first_name"
+                            id="first_name"
+                            placeholder="Enter your First Name"
+                            required
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="last_name"> Last Name: </label> 
+                        <input 
+                            class="form-control" 
+                            type="text" 
+                            name="last_name" 
+                            id="last_name"
+                            placeholder="Enter your Last Name"
+                            required
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="reg_no"> Registration Number: </label> 
+                        <input 
+                            class="form-control" 
+                            type="number" 
+                            name="reg_no"
+                            id="reg_no" 
+                            placeholder="Enter your Registration Number"
+                            required min="100000000000" max="999999999999"
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="admit_year_dd"> Year: </label>
+                        <select 
+                            class="form-control" 
+                            id="admit_year_dd" 
+                            name="admit_year"
+                            required
+                        >
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="email"> Email ID: </label> 
+                        <input 
+                            class="form-control" 
+                            type="email" 
+                            name="email"
+                            id="email"
+                            placeholder="Enter your Email ID" 
+                            required
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="mobile"> Mobile No: </label> 
+                        <input 
+                            class="form-control" 
+                            type="tel" 
+                            name="mobile"
+                            id="mobile"
+                            placeholder="Enter your Mobile Number" 
+                            required
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="password"> Password: </label> 
+                        <input 
+                            class="form-control" 
+                            type="password" 
+                            name="password" 
+                            id="password"
+                            placeholder="Enter Password"
+                            required
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="c_password"> Confirm Password: </label> 
+                        <input 
+                            class="form-control" 
+                            type="password" 
+                            name="c_password" 
+                            id="c_password"
+                            placeholder="Re-enter Password"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group text-center">
+                        <input class="btn btn-primary btn-lg" type="submit" value="Sign Up">
+                    </div>
+
+                    
+                    <div id="alt-login">
+                        <hr>
+                        <p>Do you have an account? <a href="log_in.html">Log In</a></p>
+                    </div>
+
+                </form>
+            </div>
+            <div class="col col-7">
+                <div class="row justify-content-center align-items-center" id="sign-up-right">
+                    <div class="right-hemisphere"></div>
+
+                    <div id="slider-container">
+                        <div id="splide" class="splide">
+                            <div class="splide__track">
+                                <ul class="splide__list">
+                                    <li class="splide__slide">
+                                        <div class="ca-slide" style="background-image: url(slide1.jpg);">
+                                            <div class="ca-slide-text">
+                                                Engage with students of every department 
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="splide__slide">
+                                        <div class="ca-slide" style="background-image: url(slide1.jpg);">
+                                            <div class="ca-slide-text">
+                                                1st Image 
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="splide__slide">
+                                        <div class="ca-slide" style="background-image: url(slide1.jpg);">
+                                            <div class="ca-slide-text">
+                                                1st Image 
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <footer class="d-flex justify-content-center">
+            <div>
+                <h6>
+                    Mini-Project Done By: Angshuman Roy-(181061101013), Ashish Ranjan-(181061101019), Adnan Ahmed-(181061101004)
+                </h6>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="mgrMessage" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                [...Some message...]
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close-modal">Close</button>
+            </div>
+        </div>
+        </div>
+    </div>
+    
+</body>
+
+<script>
+    $(document).ready(function(){
+
+        new Splide( '#splide', {
+            type    : 'loop',
+            autoplay: true,
+            arrows: false
+        } ).mount();
+
+        let yearsList = [];
+        let thisYear = (new Date()).getFullYear();
+        for(i=1988; i<=thisYear; i++){
+            yearsList.push(i);
+        }
+
+        let htmlData = '<option value="">Select</option>';
+        yearsList.forEach(function(e) {
+            htmlData += '<option value="'+e+'">'+e+'</option>';
+        });
+        $('#admit_year_dd').html(htmlData);
+
+
+        $.get('../api/get_roles.php', function(res) {
+            let response = JSON.parse(res);
+            if(response.status == 'success'){
+                let htmlData = '<option value="">Select</option>';
+                response.data.forEach(function(e) {
+                    htmlData += '<option value="'+e.id+'">'+e.name+'</option>';
+                });
+                $('#role_names_dd').html(htmlData).change(function(){
+                    let selectedRole = response.data.filter(function(x){
+                        return x.id==$('#role_names_dd').val();
+                    });
+                    if(selectedRole[0].name == 'Student'){
+                        $('#admit_year_dd').prev().text('Year of Admission');
+                    }
+                    else{
+                        $('#admit_year_dd').prev().text('Year of Joining');
+                    }
+                });
+            }
+            else{
+                // alert(response.message);
+                $('#mgrMessage .modal-body').text(response.message);
+                $('#mgrMessage').modal('show');
+            }
+        });
+
+
+        $('#sign_up_form').submit(function(event){
+            event.preventDefault();
+
+            let formEl = document.forms.sign_up_form;
+
+            if(formEl.password.value != formEl.c_password.value){
+                $('#mgrMessage .modal-body').text("Confirmation password does not match");
+                $('#mgrMessage').modal('show');
+                return;
+            }
+
+            let post_data = {
+                first_name: formEl.first_name.value,
+                last_name: formEl.last_name.value,
+                reg_no: formEl.reg_no.value,
+                admit_year: formEl.admit_year.value,
+                email: formEl.email.value,
+                mobile: formEl.mobile.value,
+                role_id: formEl.role_id.value,
+                password: formEl.password.value
+            }
+
+
+            $.post('../api/sign_up.php', JSON.stringify(post_data), function(res) {
+                let response = JSON.parse(res);
+                if(response.status=='success'){
+                    $('#mgrMessage .modal-body').text(response.message);
+                    $('#mgrMessage').modal('show');
+                }
+                else{
+                    $('#mgrMessage .modal-body').text(response.message);
+                    $('#mgrMessage').modal('show');
+                }
+            })
+        });
+
+        $('#close-modal').click(function(){
+            $('#sign_up_form').find("input[type=text], input[type=email], input[type=tel], input[type=password], input[type=number], textarea, select").val("");
+        })
+
+    });
+
+</script>
+
+</html>
+

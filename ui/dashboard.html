@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Dashboard - M.G.R Community Forum
+    </title>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <style>
+
+        /* body{
+            padding-bottom: 25px;
+        } */
+
+        .hide{
+            display: none;
+        }
+
+        .header{
+            padding-top: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #d3d3d3;
+            background-color: #f1f1f1;
+        }
+        
+        footer{
+            padding-top: 20px;
+            padding-bottom: 20px;
+            border-top: 1px solid #d3d3d3;
+            background-color: #f1f1f1;
+        }
+
+        img#icon{
+            width: 240px;
+        }
+
+        .q-vote-box{
+            font-size: 12px;
+            width: 50px;
+        }
+
+        .q-title{
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        .btn.btn-primary, .btn.btn-primary:hover, .btn.btn-primary:focus, .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle{
+            background-color: #7b2cbf;
+            border-color: #7b2cbf;
+        }
+
+        .btn-primary:not(:disabled):not(.disabled).active:focus, .btn-primary:not(:disabled):not(.disabled):active:focus, .show>.btn-primary.dropdown-toggle:focus{
+            box-shadow: 0 0 0 0.2rem rgb(123 44 191 / 50%);
+        }
+
+        .q-red-box{
+            border: 1px dotted #fd0e0e; 
+            padding: 0px 8px; 
+            border-radius: 5px; 
+            background: rgba(253, 6, 6, 0.1);
+        }
+
+        .q-green-box{
+            border: 1px dotted #6ff531; 
+            padding: 0px 8px; 
+            border-radius: 5px; 
+            background: rgba(94, 186, 125, 0.1);
+        }
+
+        .q-grey-box{
+            border: 1px dotted #aaaaaa; 
+            padding: 0px 8px; 
+            border-radius: 5px; 
+            background: rgba(239, 240, 241, 0.1);
+        }
+
+        label{
+            font-weight: bold;
+            color: #6b6b6b;
+        }
+
+        .rounded-xl{
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .shadow{
+            box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12) !important;
+        }
+
+        .carousel-indicators .active{
+            background-color: #1b1b1b;
+        }
+
+        
+
+    </style>
+
+</head>
+
+<body>
+
+    <div id="main_div" class="hide">
+
+        <div class="container-fluid header">
+            <div class="row justify-content-between">
+                <div class="col col-auto d-flex align-items-center justify-content-center">
+                    <img src="mini_project_logo_horiz.svg" id="icon" alt="Mini Project Logo">
+                </div>
+
+                <div class="col col-auto">
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Hello, <span id="name"></span>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                            <button class="dropdown-item" type="button">
+                                <a href="javascript:void" id="logout"> Logout </a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+
+            <div id="carouselExampleIndicators" class="carousel slide mt-4">
+
+                <div class="carousel-inner" id="all_notices">
+                  
+                </div>
+
+                <ol id="notice_indicator" class="carousel-indicators" >
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                </ol>
+
+            </div>
+
+            <div class="row mt-3">
+
+                <div class="col col-7">
+
+                    
+                    <div class="card rounded-xl shadow">
+                        <div class="card-header"> 
+                            <h3>Post a question</h3>
+                        </div>
+                        <form id="raise_question" class="card-body">
+                            <div class="form-group">
+                                <label for="question_title">Question Title:</label>
+                                <input class="form-control" type="text" name="question_title" id="question_title" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="question_description">Question Description: (Optional)</label>
+                                <textarea class="form-control" type="text" name="question_description" id="question_description" style="height: 200px;"></textarea>
+                            </div>
+                            <div class="form-group d-flex justify-content-end">
+                                <input class="btn btn-primary" type="submit" value="Ask">
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="card rounded-xl shadow mt-4" id="raise-notice-main-div">
+                        <div class="card-header">
+                            <h3>Raise a Notice</h3>
+                        </div>
+                        <div class="card-body">
+                            <form id="raise_notice">
+                                <div class="form-group">
+                                    <label for="notice_title">Notice Title:</label>
+                                    <input class="form-control" type="text" name="notice_title" id="notice_title" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="notice_subject">Notice Subject:</label>
+                                    <input class="form-control" type="text" name="notice_subject" id="notice_subject" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="notice_content">Notice Content:</label>
+                                    <textarea class="form-control" type="text" name="notice_content" id="notice_content" required style="height: 200px;"></textarea>
+                                </div>
+                                <div class="form-group d-flex justify-content-end">
+                                    <input class="btn btn-primary" type="submit" value="Raise Notice">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+ 
+                    <div class="card rounded-xl shadow mt-4">
+                        <div class="card-header">
+                            <h3>My Questions</h3>
+                        </div>
+                        <div class="card-body">
+                            <div id="my-questions-feed">
+                                Loading...
+                            </div>
+                        </div>
+                    </div> 
+
+                    <div class="card rounded-xl shadow mt-4">
+                        <div class="card-header">
+                            <h3>Upvoted Questions</h3>
+                        </div>
+                        <div class="card-body">
+                            <div id="my-upvoted-questions-feed">
+                                Loading...
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card rounded-xl shadow mt-4">
+                        <div class="card-header">
+                            <h3>Downvoted Questions</h3>
+                        </div>
+                        <div class="card-body">
+                            <div id="my-downvoted-questions-feed">
+                                Loading...
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card rounded-xl shadow mt-4">
+                        <div class="card-header">
+                            <h3>My Answers</h3>
+                        </div>
+                        <div class="card-body">
+                            <div id="my-answers-feed">
+                                Loading...
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col col-5 pl-1">
+
+                    <div class="card rounded-xl shadow">
+                        <div class="card-header">
+                            <h3>Question Feed</h3>
+                        </div>
+                        <div class="card-body">
+                            <div id="question_feed" style="margin-left: 6px;">
+                                Loading...
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+
+            </div>
+
+        </div>
+
+        <footer class="d-flex justify-content-center mt-5">
+            <div>
+                <h6>
+                    Mini-Project Done By: Angshuman Roy-(181061101013), Ashish Ranjan-(181061101019), Adnan Ahmed-(181061101004)
+                </h6>
+            </div>
+        </footer>
+
+    </div>
+
+    <div id="loading">
+        Loading...
+    </div>
+
+</body>
+
+<script>
+
+    $(document).ready(function(){
+
+        function getProfile(){
+            $.get('../api/profile.php', function(res) {
+                let response = JSON.parse(res);
+                if(response.status == 'success'){
+                    if(response.data.role_name == 'Student'){
+                        $('#raise-notice-main-div').addClass('hide');
+                        $('#name').text(response.data.first_name);
+                    }
+                    else{
+                        $('#name').text(response.data.first_name);
+                    }
+                }
+                else{
+                    alert(response.message);
+                }
+            });
+        }
+
+        $('#raise_question').submit(function(event){
+            event.preventDefault();
+
+            let formEl = document.forms.raise_question;
+
+            let post_data = {
+                question_title: formEl.question_title.value,
+                question_description: formEl.question_description.value
+            }
+
+            $.post('../api/raise_question.php', JSON.stringify(post_data), function(res) {
+                let response = JSON.parse(res);
+                if(response.status=='success'){
+                    alert(response.message);
+                    getAllQuestions();
+                    getMyQuestions();
+                    formEl.question_title.value = "";
+                    formEl.question_description.value = "";
+                }
+                else{
+                    alert(response.message);
+                }
+            })
+        });
+
+        $('#raise_notice').submit(function(event){
+            event.preventDefault();
+
+            let formE2 = document.forms.raise_notice;
+
+            let post_data = {
+                notice_title: formE2.notice_title.value,
+                notice_subject: formE2.notice_subject.value,
+                notice_content: formE2.notice_content.value
+            }
+
+            $.post('../api/raise_notice.php', JSON.stringify(post_data), function(res) {
+                let response = JSON.parse(res);
+                if(response.status=='success'){
+                    alert(response.message);
+                    $('#carouselExampleIndicators').carousel('dispose');
+                    getNotice();
+                    formE2.notice_title.value = "";
+                    formE2.notice_subject.value = "";
+                    formE2.notice_content.value = "";
+                }
+                else{
+                    alert(response.message);
+                }
+            })
+        });
+
+        function getNotice(){
+            $.get('../api/get_notice.php', function(res) {
+                let response = JSON.parse(res);
+                if(response.status == 'success'){
+                        let htmlData = '';
+                        let indicator = '';
+                        response.data.forEach(function(e, i) {
+                            htmlData += '<div class="carousel-item '+(i==0?'active':'')+'"><div class="alert alert-success container-fluid" role="alert"><h4 style="color: black; text-decoration: underline">'+e.notice_title+'</h4><div><label>Subject: '+e.notice_subject+'</label></div><div style="color: black">'+e.notice_value+'</div></div></div>';
+
+                            indicator += '<li data-target="#carouselExampleIndicators" data-slide-to="'+i+'"></li>';
+                        });
+                        $('#all_notices').html(htmlData);
+                        $('#notice_indicator').html(indicator);
+                        
+                        $('#carouselExampleIndicators').carousel({
+                            interval: 2000,
+                            pause: "hover",
+                            ride: true
+                        });
+                }
+                else{
+                    $('#carouselExampleIndicators').hide();
+                }
+            });
+        }        
+        getNotice();
+
+        function getAllQuestions(){
+            $.get('../api/get_questions.php', function(res) {
+                let response = JSON.parse(res);
+                if(response.status == 'success'){
+                    let htmlData = '';
+                    response.data.forEach(function(e) {
+                        htmlData += '<div class="row justify-content-center align-items-start q-title"><div class="align-items-center d-flex flex-column q-vote-box '+(e.total_upvotes - e.total_downvotes > 0 ? 'q-green-box' : (e.total_upvotes - e.total_downvotes == 0) ? 'q-grey-box' : 'q-red-box')+'">'+(e.total_upvotes - e.total_downvotes)+'</div><div class="col"><a href="question_page.html?q='+e.id+'" target= "_blank" style="color: #0077cc;">'+e.q_title+'</a></div></div>';
+                    });
+                    $('#question_feed').html(htmlData);
+                }
+                else{
+                    alert(response.message);
+                }
+            });
+        }        
+        getAllQuestions();
+
+        let cookie = {};
+        document.cookie.split('; ').forEach(function(x){
+            cookie[x.split('=')[0]] = x.split('=')[1];
+        });
+
+        let reg_no_of_current_user = cookie['reg_no'];
+
+        function getMyQuestions(){            
+            $.get('../api/get_questions.php?reg_no='+reg_no_of_current_user, function(res) {
+                let response = JSON.parse(res);
+                if(response.status == 'success'){
+                    let htmlData = '';
+                    if(response.data && response.data.length > 0){
+                        response.data.forEach(function(e) {
+                            htmlData += '<div class="row justify-content-center align-items-start q-title"><div class="align-items-center d-flex flex-column q-vote-box '+(e.total_upvotes - e.total_downvotes > 0 ? 'q-green-box' : (e.total_upvotes - e.total_downvotes == 0) ? 'q-grey-box' : 'q-red-box')+'">'+(e.total_upvotes - e.total_downvotes)+'</div><div class="col"><a href="question_page.html?q='+e.id+'" target= "_blank" style="color: #0077cc;">'+e.q_title+'</a></div></div>';
+                        });
+                        $('#my-questions-feed').html(htmlData);
+                    }
+                    else{
+                        $('#my-questions-feed').text('You have not raised any questions yet.');
+                    }
+                }
+                else{
+                    alert(response.message);
+                }
+            });
+        }
+        getMyQuestions();
+
+        let upvote = 1;
+
+        function getMyUpvotedQuestions(){            
+            $.get('../api/get_my_upvoted_questions.php?reg_no='+reg_no_of_current_user+' &upvote='+upvote, function(res) {
+                let response = JSON.parse(res);
+                if(response.status == 'success'){
+                    let htmlData = '';
+                    if(response.data && response.data.length > 0){
+                        response.data.forEach(function(e) {
+                                htmlData += '<div class="row justify-content-center align-items-start q-title"><div class="align-items-center d-flex flex-column q-vote-box '+(e.total_upvotes - e.total_downvotes > 0 ? 'q-green-box' : (e.total_upvotes - e.total_downvotes == 0) ? 'q-grey-box' : 'q-red-box')+'">'+(e.total_upvotes - e.total_downvotes)+'</div><div class="col"><a href="question_page.html?q='+e.q_id+'" target= "_blank" style="color: #0077cc;">'+e.q_title+'</a></div></div>';
+                        });
+                        $('#my-upvoted-questions-feed').html(htmlData);
+                    }
+                    else{
+                        $('#my-upvoted-questions-feed').text('You have not upvoted any questions yet.');
+                    }
+                }
+                else{
+                    alert(response.message);
+                }
+            });
+        }
+        getMyUpvotedQuestions();
+
+        let downvote = -1;
+
+        function getMyDownvotedQuestions(){            
+            $.get('../api/get_my_downvoted_questions.php?reg_no='+reg_no_of_current_user+' &downvote='+downvote, function(res) {
+                let response = JSON.parse(res);
+                if(response.status == 'success'){
+                    let htmlData = '';
+                    if(response.data && response.data.length > 0){
+                        response.data.forEach(function(e) {
+                                htmlData += '<div class="row justify-content-center align-items-start q-title"><div class="align-items-center d-flex flex-column q-vote-box '+(e.total_upvotes - e.total_downvotes > 0 ? 'q-green-box' : (e.total_upvotes - e.total_downvotes == 0) ? 'q-grey-box' : 'q-red-box')+'">'+(e.total_upvotes - e.total_downvotes)+'</div><div class="col"><a href="question_page.html?q='+e.q_id+'" target= "_blank" style="color: #0077cc;">'+e.q_title+'</a></div></div>';
+                        });
+                        $('#my-downvoted-questions-feed').html(htmlData);
+                    }
+                    else{
+                        $('#my-downvoted-questions-feed').text('You have not downvoted any questions yet.');
+                    }
+                }
+                else{
+                    alert(response.message);
+                }
+            });
+        }
+        getMyDownvotedQuestions();
+
+        function getMyAnswers(){            
+            $.get('../api/get_answers.php?reg_no='+reg_no_of_current_user, function(res) {
+                let response = JSON.parse(res);
+                if(response.status == 'success'){
+                    let htmlData = '';
+                    if(response.data && response.data.length > 0){
+                        response.data.forEach(function(e) {
+                            htmlData += '<div class="row justify-content-center align-items-start q-title"><div class="col col-12"><a href="question_page.html?q='+e.q_id+'#ans-'+e.ans_id+'" target="_blank">'+e.q_title+'</a></div></div>';
+                        });
+                        $('#my-answers-feed').html(htmlData);
+                    }
+                    else{
+                        $('#my-answers-feed').text('You have not answered any questions yet.');
+                    } 
+                }
+                else{
+                    alert(response.message);
+                }
+            });
+        }
+        getMyAnswers();
+
+        $.get('../api/is_logged_in.php', function(res) {
+            let response = JSON.parse(res);
+            if(response.status == 'success'){
+                getAllQuestions();
+                getProfile();
+                $('#main_div').removeClass('hide');
+                $('#loading').addClass('hide');
+            }
+            else{
+                alert(response.message);
+                window.location.replace("log_in.html");
+            }
+        });
+
+        $('#logout').click(function(event){
+            event.preventDefault();
+
+            $.get('../api/log_out.php', function(res) {
+                let response = JSON.parse(res);
+                if(response.status=='success'){
+                    alert(response.message);
+                    window.location.replace("log_in.html");
+                }
+                else{
+                    alert(response.message);
+                }
+            })
+        });
+
+    });
+
+</script>
+
+</html>

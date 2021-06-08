@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Log In - M.G.R Community Forum
+    </title>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+    <link rel="stylesheet" href="sign_up_log_in_style.css"/>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row sign-up">
+            <div class="col col-5">
+                <div class="d-flex align-items-center justify-content-center mt-5">
+                    <img src="mini_project_logo_wob.svg" id="icon" alt="Mini Project Logo">
+                </div>
+
+                <div class="container">
+                    <form id="log_in_form" method="POST">
+
+                        <div class="text-center mt-5" >
+                            <h1>Log In</h1>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Registration Number</label>
+                            <input placeholder="Enter Registration Number" class="form-control" type="number" name="reg_no" required min="100000000000" max="999999999999"> 
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input placeholder="Enter Password" class="form-control" type="password" name="password" required>
+                        </div>
+                        <div class="form-group d-flex justify-content-center">
+                            <input class="btn btn-primary" type="submit" value="Log In">
+                        </div>
+                        <div id="alt-login">
+                            <hr>
+                            <p>Don't have an account? <a href="sign_up.html">Sign Up Now!</a></p>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+            <div class="col col-7">
+                <div class="row justify-content-center align-items-center" id="sign-up-right">
+                    <div class="right-hemisphere"></div>
+
+                    <div id="slider-container">
+                        <div id="splide" class="splide">
+                            <div class="splide__track">
+                                <ul class="splide__list">
+                                    <li class="splide__slide">
+                                        <div class="ca-slide" style="background-image: url(slide1.jpg);">
+                                            <div class="ca-slide-text">
+                                                Engage with students of every department 
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="splide__slide">
+                                        <div class="ca-slide" style="background-image: url(slide1.jpg);">
+                                            <div class="ca-slide-text">
+                                                1st Image 
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="splide__slide">
+                                        <div class="ca-slide" style="background-image: url(slide1.jpg);">
+                                            <div class="ca-slide-text">
+                                                1st Image 
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                          
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <footer class="d-flex justify-content-center">
+            <div>
+                <h6>
+                    Mini-Project Done By: Angshuman Roy-(181061101013), Ashish Ranjan-(181061101019), Adnan Ahmed-(181061101004)
+                </h6>
+            </div>
+        </footer>
+        
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="mgrMessage" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                [...Some message...]
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        </div>
+    </div>
+    
+</body>
+
+<script>
+
+    $(document).ready(function(){
+
+        new Splide( '#splide', {
+            type    : 'loop',
+            autoplay: true,
+            arrows: false
+        } ).mount();
+        
+        $('#log_in_form').submit(function(event){
+            event.preventDefault();
+
+            let formEl = document.forms.log_in_form;
+
+            let post_data = {
+                reg_no: formEl.reg_no.value,
+                password: formEl.password.value
+            }
+
+            $.post('../api/log_in.php', JSON.stringify(post_data), function(res){
+                let response = JSON.parse(res);
+                if(response.status=='success'){
+                    var url = new URL(location.href);
+                    var redirect = url.searchParams.get("redirect");
+                    if(redirect){
+                        window.location.replace(redirect);
+                    }
+                    else{
+                        window.location.replace("dashboard.html");
+                    }
+                }
+                else{
+                    alert(response.message);
+                }
+            })
+        });
+
+    });
+
+</script>
+
+</html>
+

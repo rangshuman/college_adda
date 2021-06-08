@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title >
+        Loading...
+    </title>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <style>
+
+        /* body{
+            padding-bottom: 50px;
+        } */
+
+        .header{
+            padding-top: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #d3d3d3;
+            background-color: #f1f1f1;
+        }
+
+        img#icon{
+            width: 240px;
+        }
+
+        .btn.btn-primary, .btn.btn-primary:hover, .btn.btn-primary:focus, .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle{
+            background-color: #7b2cbf;
+            border-color: #7b2cbf;
+        }
+
+        .btn-primary:not(:disabled):not(.disabled).active:focus, .btn-primary:not(:disabled):not(.disabled):active:focus, .show>.btn-primary.dropdown-toggle:focus{
+            box-shadow: 0 0 0 0.2rem rgb(123 44 191 / 50%);
+        }
+
+        .hide{
+            display: none;
+        }
+
+        label{
+            font-weight: bold;
+            color: #6b6b6b;
+            margin-bottom: 0px;
+        }
+
+        #main_div{
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        #q-up-vote{
+            margin-top: 13px;
+            width: 0;
+            height: 0;
+            border-left: 12px solid transparent;
+            border-right: 12px solid transparent;
+            border-bottom: 20px solid #aaaaaa;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        #ans-up-vote{
+            margin-top: 8px;
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 14px solid #aaaaaa;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        #q-down-vote{
+            width: 0;
+            height: 0;
+            border-left: 12px solid transparent;
+            border-right: 12px solid transparent;
+            border-top: 20px solid #aaaaaa;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        #ans-down-vote{
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 14px solid #aaaaaa;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        #q-up-vote.active{
+            border-bottom: 20px solid #6ff531;
+        }
+        #q-down-vote.active{
+            border-top: 20px solid #fd0e0e;
+        }
+        
+        #ans-up-vote.active{
+            border-bottom: 14px solid #6ff531;
+        }
+        #ans-down-vote.active{
+            border-top: 14px solid #fd0e0e;
+        }
+
+        .q-vote-count.text-red{
+            color: #fd0e0e;
+        }
+        .q-vote-count.text-green{
+            color: #6ff531;
+        }
+
+        .q-vote-box{
+            font-size: 12px;
+            width: 50px;
+        }
+
+        .q-red-box{
+            border: 1px dotted #fd0e0e; 
+            padding: 0px 8px; 
+            border-radius: 5px; 
+            background: rgba(253, 6, 6, 0.1);
+        }
+
+        .q-green-box{
+            border: 1px dotted #6ff531; 
+            padding: 0px 8px; 
+            border-radius: 5px; 
+            background: rgba(94, 186, 125, 0.1);
+        }
+
+        .q-grey-box{
+            border: 1px dotted #aaaaaa; 
+            padding: 0px 8px; 
+            border-radius: 5px; 
+            background: rgba(239, 240, 241, 0.1);
+        }
+
+        .q-vote-count{
+            font-size: 22px;
+        }
+
+        .q-title{
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        footer{
+            padding-top: 20px;
+            padding-bottom: 20px;
+            border-top: 1px solid #d3d3d3;
+            background-color: #f1f1f1;
+        }
+
+        .rounded-xl{
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .shadow{
+            box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12) !important;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="main_div">
+
+        <div class="container-fluid header">
+            <div class="row justify-content-between">
+                <div class="col col-auto d-flex align-items-center justify-content-center">
+                    <img src="mini_project_logo_horiz.svg" id="icon" alt="Mini Project Logo">
+                </div>
+
+                <div class="col col-auto hide" id="drop-down">
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Hello, <span id="name"></span>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                            <button class="dropdown-item" type="button">
+                                <a href="javascript:void" id="logout"> Logout </a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col col-auto hide" id="log_in_top">
+                    <div>
+                        <button id="login-btn" class="btn btn-primary" onclick="window.location.href = 'log_in.html?redirect='+window.location.href;">
+                            Log In
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row justify-content-center mt-4">
+
+                <div class="col col-8 pr-4">
+
+                    <div class="row justify-content-center" >
+
+                        <div class="col col-1 align-items-center d-flex flex-column mt-2">
+                            <div class="q-vote" id="q-up-vote"></div>
+                            <div class="q-vote-count">...</div>
+                            <div class="q-vote" id="q-down-vote"></div>
+                        </div>
+                        
+                        <div class="col col-11">
+
+                            <div class="row justify-content-center">
+                                <div class="col">
+                                    <div>
+                                        <h2 id="q_title" class="text-green text-red"></h2>
+                                        <div id="q_desc" class="mt-3"></div>
+                                    </div>
+                                </div>
+                            </div>
+        
+                            <div class="d-flex justify-content-end mt-4">
+                                <button id="submit-your-ans" class="btn btn-primary hide">
+                                    Submit Your Answer
+                                </button>
+                                <span id="login-to-ans" class="hide">
+                                    <button class="btn btn-primary" onclick="window.location.href = 'log_in.html?redirect='+window.location.href;">
+                                        Login
+                                    </button>
+                                    to submit your answer.
+                                </span>
+                            </div>
+        
+                            <form style="display: none;" id="answer_form" method="POST">
+                                <h5>Submit Your Answer</h5>
+                                <div class="form-group">
+                                    <textarea class="form-control" type="text" name="answer" id="submitted_answer" required style="height: 200px;"></textarea>
+                                </div>
+                                <div>
+                                    <div class="form-group d-flex justify-content-end">
+                                        <input id="cancel-ans" class="btn btn-secondary mr-2" type="button" value="Cancel">
+                                        <input class="btn btn-primary" type="submit" value="Answer">
+                                    </div>
+                                </div>
+                            </form>
+        
+                            <div class="row justify-content-center mt-4">
+                                <div class="col">
+                                    <div>
+                                        <h5><span id="ans-count"></span></h5>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div id="answer_feed" >
+                                                    Loading...
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    
+                </div>
+
+                <div class="col col-4 pl-1">
+                    <div class="card rounded-xl shadow">
+                        <div class="card-header">
+                            <h3>Question Feed</h3>
+                        </div>
+                        <div class="card-body">
+                            <div id="question_feed" style="margin-left: 6px;">
+                                Loading...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <footer class="d-flex justify-content-center mt-5">
+            <div>
+                <h6>
+                    Mini-Project Done By: Angshuman Roy-(181061101013), Ashish Ranjan-(181061101019), Adnan Ahmed-(181061101004)
+                </h6>
+            </div>
+        </footer>
+
+    </div>
+
+</body>
+
+<script>
+    $(document).ready(function(){
+
+        var url = new URL(location.href);
+        var q = url.searchParams.get("q");
+
+        function getProfile(){
+            $.get('../api/profile.php', function(res) {
+                let response = JSON.parse(res);
+                if(response.status == 'success'){
+                    $('#name').text(response.data.first_name);
+                }
+                else{
+                    // alert(response.message);
+                }
+            });
+        };
+        getProfile();
+
+        $.get('../api/is_logged_in.php', function(res) {
+            let response = JSON.parse(res);
+            if(response.status == 'success'){
+                getQuestions();
+                getAnswers();
+                getProfile();
+                $('#drop-down').removeClass('hide');
+                $('#log_in_top').addClass('hide');
+
+                $('#submit-your-ans').removeClass('hide');
+                $('#login-to-ans').addClass('hide'); 
+            }
+            else{
+                $('#drop-down').addClass('hide');
+                $('#log_in_top').removeClass('hide');
+
+                $('#submit-your-ans').addClass('hide');
+                $('#login-to-ans').removeClass('hide'); 
+            }
+        });
+        
+        $('#answer_form').submit(function(event){
+            event.preventDefault();
+
+            let formEl = document.forms.answer_form;
+
+            let post_data = {
+                answer: formEl.answer.value,
+                q_id: q
+            }
+
+            $.post('../api/submit_answer.php', JSON.stringify(post_data), function(res) {
+                let response = JSON.parse(res);
+                if(response.status=='success'){
+                    alert(response.message);
+                    formEl.answer.value = "";
+                    getAnswers();
+                }
+                else{
+                    alert(response.message);
+                }
+            })
+        });
+
+
+        $('#submit-your-ans').click(function(){
+            $('#answer_form').show();
+            $('#submit-your-ans').hide();
+        })
+
+        $('#cancel-ans').click(function(){
+            $('#answer_form').hide();
+            $('#submit-your-ans').show();
+        })
+
+        function getQuestions(){            
+            $.get('../api/get_questions.php?q='+q, function(res) {
+                let response = JSON.parse(res);
+                if(response.status == 'success'){
+                    console.log(response.data);
+                    $('#q_title').text(response.data[0].q_title); 
+                    $('#q_desc').text(response.data[0].q_value);
+                    $('title').text(response.data[0].q_title);
+                    let net_vote = response.data[0].total_upvotes - response.data[0].total_downvotes;
+                    if(net_vote > 0){
+                        $('.q-vote-count').addClass('text-green');
+                    }
+                    else{
+                        $('.q-vote-count').addClass('text-red');
+                    }
+                    $('.q-vote-count').text(net_vote);
+                    $('#q-up-vote').removeClass('active');
+                    $('#q-down-vote').removeClass('active');
+                    if(response.data[0].user_vote == 1){
+                        $('#q-up-vote').addClass('active');
+                    }
+                    else if(response.data[0].user_vote == -1){
+                        $('#q-down-vote').addClass('active');
+                    }
+                }
+                else{
+                    alert(response.message);
+                }
+            });
+        }
+        getQuestions();
+
+        // For the answer feed
+        function getAnswers(){
+            $.get('../api/get_answers.php?q='+q, function(res) {
+                let response = JSON.parse(res);
+                if(response.status == 'success'){
+                    let htmlData = '';
+                    response.data.forEach(function(e) {
+                        htmlData += '<div id="ans-'+e.id+'" class="mt-4" style="border-bottom: 1px solid #d1d1d1;"><div class="row justify-content-center"><div class="col col-1 align-items-center d-flex flex-column"><div class="ans-vote '+(e.user_vote == 1 ? 'active' : '')+'" ansid="'+e.id+'" id="ans-up-vote"></div><div class="ans-vote-count">'+(e.total_upvote - e.total_downvote)+'</div><div class="ans-vote '+(e.user_vote == -1 ? 'active' : '')+'" ansid="'+e.id+'" style="padding-bottom: 10px;" id="ans-down-vote"></div><div></div></div><div class="col col-11"><label>'+e.first_name+' '+e.last_name+'</label><div style="padding-bottom: 5px;">'+e.ans_value+'</div></div></div></div>';
+                    });
+                    $('#answer_feed').html(htmlData);
+                    $('#ans-count').text(response.data.length + ' ' + (response.data.length>1?'Answers':'Answer'));
+
+                    setTimeout(function(){
+                        document.getElementById(location.hash.replace('#', '')).scrollIntoView();
+                        $(location.hash).css({background: 'bisque', transition: 'background 0.3s ease-in'});
+                        setTimeout(function(){
+                            $(location.hash).css({background: 'transparent'});
+                        }, 2000);
+                    }, 500);
+                }
+                else{
+                    alert(response.message);
+                }
+            });
+        }
+        getAnswers();
+
+        $('#logout').click(function(event){
+            event.preventDefault();
+
+            $.get('../api/log_out.php', function(res) {
+                let response = JSON.parse(res);
+                if(response.status=='success'){
+                    alert(response.message);
+                    window.location.replace("log_in.html");
+                }
+                else{
+                    alert(response.message);
+                }
+            })
+        });
+
+
+        // For the question feed on the right side
+        function getAllQuestions(){
+            $.get('../api/get_questions.php', function(res) {
+                let response = JSON.parse(res);
+                if(response.status == 'success'){
+                    let htmlData = '';
+                    response.data.forEach(function(e) {
+                        htmlData += '<div class="row justify-content-center align-items-start q-title"><div class="align-items-center d-flex flex-column q-vote-box '+(e.total_upvotes - e.total_downvotes > 0 ? 'q-green-box' : (e.total_upvotes - e.total_downvotes == 0) ? 'q-grey-box' : 'q-red-box')+'">'+(e.total_upvotes - e.total_downvotes)+'</div><div class="col"><a href="question_page.html?q='+e.id+'" target= "_blank" style="color: #0077cc;">'+e.q_title+'</a></div></div>';
+                    });
+                    $('#question_feed').html(htmlData);
+                }
+                else{
+                    alert(response.message);
+                }
+            });
+        }        
+        getAllQuestions();
+
+        $('.q-vote').click(function(){
+
+            let vote = 1;
+            if($(this).prop('id') == 'q-down-vote'){
+                vote = -1;
+            }
+
+            let post_data = {
+                q_id: q,
+                vote_value: vote
+            }
+
+            $.post('../api/submit_q_vote.php', JSON.stringify(post_data), function(res) {
+                let response = JSON.parse(res);
+                if(response.status=='success'){
+                    getQuestions();
+                    getAllQuestions();
+                }
+                else{
+                    alert(response.message);
+                }
+            })
+        });
+
+        $('html').on('click', '.ans-vote', function(){
+
+            let vote = 1;
+            if($(this).prop('id') == 'ans-down-vote'){
+                vote = -1;
+            }
+
+            let post_data = {
+                ans_id: $(this).attr('ansid'),
+                vote_value: vote,
+                q_id: q
+            }
+
+            console.log(post_data);
+
+            $.post('../api/submit_ans_vote.php', JSON.stringify(post_data), function(res) {
+                let response = JSON.parse(res);
+                if(response.status=='success'){
+                    getAnswers();
+                }
+                else{
+                    alert(response.message);
+                }
+            })
+        });
+
+    });
+</script>
+
+</html>
