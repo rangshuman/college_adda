@@ -387,8 +387,11 @@
                     if(net_vote > 0){
                         $('.q-vote-count').addClass('text-green');
                     }
-                    else{
+                    else if(net_vote < 0){
                         $('.q-vote-count').addClass('text-red');
+                    }
+                    else{
+                        $('.q-vote-count').addClass('text-mute');
                     }
                     $('.q-vote-count').text(net_vote);
                     $('#q-up-vote').removeClass('active');
