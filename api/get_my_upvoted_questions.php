@@ -19,7 +19,7 @@
     $all1 = $result1 -> fetch_all();
 
     $temp = array();
-    if($all1){
+    if($all1!==null){
         // $all = $result -> fetch_all();
         foreach($all1 as $x){
             $t = (object) array(

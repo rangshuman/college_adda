@@ -444,7 +444,7 @@
                 }
             });
         }
-        getMyUpvotedQuestions();
+        // getMyUpvotedQuestions();
 
         let downvote = -1;
 
@@ -468,7 +468,7 @@
                 }
             });
         }
-        getMyDownvotedQuestions();
+        // getMyDownvotedQuestions();
 
         function getMyAnswers(){            
             $.get('../api/get_answers.php?reg_no='+reg_no_of_current_user, function(res) {
@@ -497,6 +497,8 @@
             if(response.status == 'success'){
                 getAllQuestions();
                 getProfile();
+                getMyUpvotedQuestions();
+                getMyDownvotedQuestions();
                 $('#main_div').removeClass('hide');
                 $('#loading').addClass('hide');
             }

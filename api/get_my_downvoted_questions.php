@@ -17,9 +17,9 @@
     $obj -> message = "Here are all the upvoted questions";
 
     $all1 = $result1 -> fetch_all();
-
+// var_dump($all1);
     $temp = array();
-    if($all1){
+    if($all1!==null){
         // $all = $result -> fetch_all();
         foreach($all1 as $x){
             $t = (object) array(
@@ -34,7 +34,7 @@
     }
     else{
         $obj -> status = "failure";
-        $obj -> message = "Something went wrong while getting the upvoted questions";
+        $obj -> message = "Something went wrong while getting the downvoted questions";
     }
 
     echo json_encode($obj);
