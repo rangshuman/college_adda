@@ -1,4 +1,2 @@
-# college_adda
-College Adda - A tool for college students and teachers
-
-Made By: Angshuman Roy, Ashish Ranjan, Adnan Ahmed
+# College Adda
+A community-based questions and answers website for college students and teachers.
